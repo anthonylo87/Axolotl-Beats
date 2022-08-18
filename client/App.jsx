@@ -6,6 +6,7 @@ import PlaylistPage from './components/PlaylistPage.jsx';
 import EmbeddedPlayer from './components/EmbeddedPlayer.jsx';
 import TempReroute from './components/TempReroute.jsx';
 import Slider from '@mui/material/Slider';
+import AuthContext from './components/AuthContext.jsx'
 
 import './stylesheets/styles.scss';
 import './stylesheets/app.css';
@@ -100,6 +101,7 @@ function App() {
 
   return (
     <Router>
+      <AuthContext>
       <div id='app'>
         <nav id='navBar'>
           <ul className='navList'>
@@ -138,7 +140,8 @@ function App() {
       </div>
       <nav className='end' id='navBar'>
         End
-      </nav>
+        </nav>
+        </AuthContext>
     </Router>
   );
 }
