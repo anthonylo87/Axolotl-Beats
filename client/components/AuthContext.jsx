@@ -1,26 +1,40 @@
-import { useState } from 'react';
+import React, { useState, createContext, useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-export const AuthContext = ({ children }) => {
+const AuthContext = createContext();
 
-  // create context
-
+const AuthProvider = ({ children }) => {
+  
   const [user, setUser] = useState(null);
+  const navigate = useNavigate()
   
-  let signin = (newUser) => {
+  const signIn = (newUser) => {
+    // fetch('/api/checkUserAuth')
+    // .then(res => res.json())
+    // .then(data => console.log(data))
+    // .catch(err => console.log(err))
     setUser(newUser);
-    // navigate 
+    navigate('/playlistform')
+  }
   
-    let signout = () => {
-      setUser(null);
-      // navigate
-    };
-  
-    let value = { user, signin, signout };
-  
-    return (
-      <AuthContext.Provider value={value}>
-        {children}
-      </AuthContext.Provider>
-    );
+  const signOut = () => {
+    setUser(null);
+    console.log('logout')
+    //=navigate("api/clearCookies");
   };
-}
+  
+  const value = { user, signIn, signOut };
+  
+  return (
+    <AuthContext.Provider value={value}>
+      {children}
+    </AuthContext.Provider>
+  );
+};
+
+const useAuth = () => {
+  return useContext(AuthContext);
+};
+
+
+export {useAuth, AuthProvider};
