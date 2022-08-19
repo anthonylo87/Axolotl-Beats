@@ -112,14 +112,16 @@ const PlaylistPage = (props) => {
             // add a new breakpoint-object to breakpointsArr, which is a copy of the last breakpoint-object but with its minute property incremented by 30
             let newBreakpointsArr = [...breakpointsArr];
             const lastBreakpointObj = breakpointsArr[breakpointsArr.length - 1];
-            const newBreakpointObj = Object.assign({}, lastBreakpointObj);
+            const newBreakpointObj = JSON.parse(
+              JSON.stringify(newBreakpointObj)
+            );
             newBreakpointObj.minute += 30;
             newBreakpointsArr.push(newBreakpointObj);
             setbreakpointsArr(newBreakpointsArr);
             // add a new segment-object to segmentsArr, which is a copy of the last segment-object
             let newSegmentsArr = [...segmentsArr];
             const lastSegmentObj = segmentsArr[segmentsArr.length - 1];
-            const newSegmentObj = Object.assign({}, lastSegmentObj);
+            const newSegmentObj = JSON.parse(JSON.stringify(lastSegmentObj));
             newSegmentsArr.push(newSegmentObj);
             setSegmentsArr(newSegmentsArr);
           }}

@@ -15,7 +15,7 @@ function Breakpoint(props) {
   } else {
     minuteZeroOrEntry = (
       <div>
-        <label className='py-3' for='minute'>
+        <label className='py-3' htmlFor='minute'>
           Minute:{' '}
         </label>
         <input
