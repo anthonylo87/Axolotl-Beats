@@ -24,6 +24,14 @@ router.get(
   authController.checkUserAuth,
   (req, res) => {
   res.status(200).json(res.locals.authenticatedUser)
+  });
+
+  router.get(
+  '/logOut',
+  (req, res) => {
+  res.clearCookie('access')
+     .clearCookie('refresh')
+    .redirect('/')
 });
 
 

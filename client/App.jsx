@@ -1,11 +1,11 @@
-import React, { useState, Component } from 'react';
+import React, { useState, useContext } from 'react';
 import { HashRouter as Router, Route, Routes } from 'react-router-dom';
 
 import LoginPage from './components/LoginPage.jsx';
 import PlaylistPage from './components/PlaylistPage.jsx';
 import EmbeddedPlayer from './components/EmbeddedPlayer.jsx';
-import TempReroute from './components/TempReroute.jsx';
-import Slider from '@mui/material/Slider';
+import { AuthProvider, useAuth } from './components/AuthContext.jsx'
+import Nav from './components/Nav.jsx'
 
 import './stylesheets/styles.scss';
 import './stylesheets/app.css';
@@ -37,6 +37,7 @@ import './stylesheets/app.css';
 //   console.log('this.state in render', this.state.playlistId);
 
 function App() {
+  
   const [playlistId, setplaylistId] = useState('Initial value');
   // AMG (wed. 5pm): could also include as state a 'custom_parameter_names' array, e.g. ['danciness', 'speechiness']. then, update the function definition remixBreakpointsAndSegmentDataIntoAnArrForServer to be a little cleaner.
 
@@ -76,19 +77,13 @@ function App() {
   ]);
 
   const [loading, setLoading] = useState(false);
+  const auth = useAuth();
 
   return (
     <Router>
-      <div id='app'>
-        <nav id='navBar'>
-          <ul className='navList'>
-            <li className='links' id='logoutButton'>
-              <a className='bye' href='http://google.com'>
-                Logout
-              </a>
-            </li>
-          </ul>
-        </nav>
+      <AuthProvider>
+        <div id='app'>
+        <Nav/>
         <div id='title'>
           <div id='name'>Axolotl Beats</div>
           <div id='slogan'>beats forEach</div>
@@ -115,9 +110,7 @@ function App() {
           ></Route>
         </Routes>
       </div>
-      <nav className='end' id='navBar'>
-        End
-      </nav>
+      </AuthProvider>
     </Router>
   );
 }
