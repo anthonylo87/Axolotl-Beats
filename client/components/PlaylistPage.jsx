@@ -113,7 +113,7 @@ const PlaylistPage = (props) => {
             let newBreakpointsArr = [...breakpointsArr];
             const lastBreakpointObj = breakpointsArr[breakpointsArr.length - 1];
             const newBreakpointObj = JSON.parse(
-              JSON.stringify(newBreakpointObj)
+              JSON.stringify(lastBreakpointObj)
             );
             newBreakpointObj.minute += 30;
             newBreakpointsArr.push(newBreakpointObj);
