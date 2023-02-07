@@ -8,7 +8,7 @@ function DownArrow() {
         width='30'
         height='30'
         fill='currentColor'
-        className='bi bi-arrow-down'
+        className='bi bi-arrow-down block mx-auto'
         viewBox='0 0 16 16'
       >
         <path

@@ -3,7 +3,6 @@ import { HashRouter as Router, Route, Routes } from 'react-router-dom';
 
 import LoginPage from './components/LoginPage.jsx';
 import PlaylistPage from './components/PlaylistPage.jsx';
-import EmbeddedPlayer from './components/EmbeddedPlayer.jsx';
 import { AuthProvider, useAuth } from './components/AuthContext.jsx';
 import Nav from './components/Nav.jsx';
 
@@ -84,15 +83,10 @@ function App() {
         <div id='app'>
           <Nav />
           <div id='title'>
-            <div id='name'>Axolotl Beats</div>
-            <div id='slogan'>beats forEach</div>
+            <div id='name'>Axolotl Beats: beats forEach</div>
           </div>
           <Routes>
             <Route path='/' element={<LoginPage />}></Route>
-            <Route
-              path='/player'
-              element={<EmbeddedPlayer playlistId={playlistId} />}
-            ></Route>
             <Route
               path='/playlistform'
               element={

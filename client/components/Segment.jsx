@@ -176,11 +176,14 @@ function Segment(props) {
     setSegmentsArr(updateState);
   };
 
+  //TODO: create handleDelete
+
   return (
     <div>
       <FormControl sx={{ m: 1, width: 300 }}>
         <InputLabel id='demo-multiple-chip-label'>Genres</InputLabel>
         <Select
+          className='bg-secondary border border-borderColor'
           labelId='demo-multiple-chip-label'
           id='demo-multiple-chip'
           multiple
@@ -190,7 +193,7 @@ function Segment(props) {
           renderValue={(selected) => (
             <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
               {selected.map((value) => (
-                <Chip key={value} label={value} />
+                <Chip key={value} label={value} onDelete={() => {}} />
               ))}
             </Box>
           )}
