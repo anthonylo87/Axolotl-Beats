@@ -8,53 +8,55 @@ function Breakpoint(props) {
 
   // Get the changing value of time and set its state on change
 
-
-  let minuteZeroOrEntry;
-
-  if (id === 0) {
-    minuteZeroOrEntry = (<h3 className='py-3'>Minute: 0</h3>)
-  } else {
-    minuteZeroOrEntry = (
-      <div>
-      <label className='py-3' for="minute">Minute: </label>
-      <input className ="w-10" id="minute"
+  const minuteZeroOrEntry = (
+    <div>
+      <label className='p-2' htmlFor='minute'>
+        Minute:{' '}
+      </label>
+      <input
+        className='shadow appearance-none rounded border border-borderColor p-2 text-gray-700 focus:outline-none focus:shadow-outline'
+        id='minute'
         name='minuteInput'
         value={breakpointsArr[id].minute}
-        type='text'
+        type='Number'
         onChange={(e) => {
           const updateState = [...breakpointsArr];
-          updateState[id].minute = e.target.value * 1;
+          updateState[id].minute = e.target.value;
           setbreakpointsArr(updateState);
         }}
+        disabled={id === 0 ? true : false}
       ></input>
+    </div>
+  );
+
+  // Create sliders for custom parameters
+  const customParamsList = Object.keys(breakpointsArr[0].custom_params);
+
+  const paramComponents = customParamsList.map((ele, index) => {
+    return (
+      <div className='m-3' key={index}>
+        <label>
+          <strong>{ele}</strong>
+        </label>
+        <Slider
+          type='number'
+          onChange={(e) => {
+            const updateState = [...breakpointsArr];
+            updateState[id].custom_params[ele] = e.target.value / 100;
+            setbreakpointsArr(updateState);
+          }}
+          value={breakpointsArr[id].custom_params[ele] * 100}
+          min={0}
+          max={100}
+          step={1}
+          valueLabelDisplay='on'
+        />
       </div>
-    )
-  };
-
-    // // this was previously written by AL, and is being replaced by CV and AMG on thursday around 4:40pm
-
-    //   <input
-    //     className='shadow appearance-none rounded border border-borderColor w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline'
-    //     name='minuteInput'
-    //     min={
-    //       breakpointsArr[id - 1] !== undefined
-    //         ? breakpointsArr[id - 1].minute + 15
-    //         : 0
-    //     }
-    //     value={breakpointsArr[id].minute}
-    //     type='number'
-    //     onChange={(e) => {
-    //       const updateState = [...breakpointsArr];
-    //       updateState[id].minute = e.target.value;
-    //       setbreakpointsArr(updateState);
-    //     }}
-    //     disabled={timeDisabled}
-    //   ></input>
-
-
+    );
+  });
 
   return (
-    <div className='m-5 rounded border border-borderColor w-11/12 lg:w-3/12 p-5'>
+    <div className='m-3 rounded border border-borderColor bg-secondary w-11/12 p-5'>
       {minuteZeroOrEntry}
       <br></br>
       <div className='m-3'>
@@ -74,24 +76,7 @@ function Breakpoint(props) {
           valueLabelDisplay='on'
         />
       </div>
-      <div className='m-3'>
-        <label>
-          <strong>Danciness</strong>
-        </label>
-        <Slider
-          type='number'
-          onChange={(e) => {
-            const updateState = [...breakpointsArr];
-            updateState[id].custom_params.danciness = e.target.value / 100;
-            setbreakpointsArr(updateState);
-          }}
-          value={breakpointsArr[id].custom_params.danciness * 100}
-          min={0}
-          max={100}
-          step={1}
-          valueLabelDisplay='on'
-        />
-      </div>
+      {paramComponents}
     </div>
   );
 }
