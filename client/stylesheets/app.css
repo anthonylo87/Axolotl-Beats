@@ -4,10 +4,11 @@
 
 html {
   font-size: 16px;
+  color: theme('colors.spotifyGreen');
 }
 
 body {
-  background-color: theme('colors.spotifyGreen');
+  background-color: theme('colors.spotifyBlack');
 }
 
 h2 {
@@ -20,5 +21,16 @@ p {
 }
 
 .homepage-header {
-  -webkit-text-stroke: 7px black;
+  -webkit-text-stroke: 7px theme('colors.spotifyGreen');
+}
+
+.main-text {
+  -webkit-mask-image: url('../images/mask.png');
+  mask-image: url('../images/mask.png');
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-size: 75%;
+  mask-size: 75%;
+  -webkit-mask-position: center;
+  mask-position: center;
 }

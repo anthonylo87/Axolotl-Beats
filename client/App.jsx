@@ -1,9 +1,9 @@
 import React, { useState, useContext } from 'react';
-import { HashRouter as Router, Route, Routes } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 
 import HomePage from './pages/HomePage.jsx';
 import LoginPage from './components/LoginPage.jsx';
-import PlaylistPage from './components/PlaylistPage.jsx';
+import PlaylistPage from './pages/PlaylistPage.jsx';
 import EmbeddedPlayer from './components/EmbeddedPlayer.jsx';
 import { AuthProvider, useAuth } from './components/AuthContext.jsx';
 import Nav from './components/Nav.jsx';
@@ -55,34 +55,26 @@ function App() {
   const auth = useAuth();
 
   return (
-    <Router>
-      <AuthProvider>
-        <div id='app'>
-          <Nav />
-          <Routes>
-            <Route path='/' element={<HomePage />}></Route>
-            {/* <Route
-              path='/player'
-              element={<EmbeddedPlayer playlistId={playlistId} />}
-            ></Route>
-            <Route
-              path='/playlistform'
-              element={
-                <PlaylistPage
-                  setplaylistId={setplaylistId}
-                  loading={loading}
-                  setLoading={setLoading}
-                  breakpointsArr={breakpointsArr}
-                  setbreakpointsArr={setbreakpointsArr}
-                  segmentsArr={segmentsArr}
-                  setSegmentsArr={setSegmentsArr}
-                />
-              }
-            ></Route> */}
-          </Routes>
-        </div>
-      </AuthProvider>
-    </Router>
+    <AuthProvider>
+      <Nav />
+      <Routes>
+        <Route path='/' element={<HomePage />}></Route>
+        <Route
+          path='/dashboard'
+          element={
+            <PlaylistPage
+              setplaylistId={setplaylistId}
+              loading={loading}
+              setLoading={setLoading}
+              breakpointsArr={breakpointsArr}
+              setbreakpointsArr={setbreakpointsArr}
+              segmentsArr={segmentsArr}
+              setSegmentsArr={setSegmentsArr}
+            />
+          }
+        ></Route>
+      </Routes>
+    </AuthProvider>
   );
 }
 

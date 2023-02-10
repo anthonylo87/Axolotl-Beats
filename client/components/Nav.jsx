@@ -1,5 +1,6 @@
 import React from 'react';
 import { useAuth } from './AuthContext.jsx';
+import { Link } from 'react-router-dom';
 
 const Nav = (props) => {
   // const auth = useAuth();
@@ -17,11 +18,12 @@ const Nav = (props) => {
   // }
 
   return (
-    <nav className='border-b border-black flex justify-center min-h-[3rem]'>
-      <div className='w-1/2 min-[700px] m-auto'>
+    <nav className='bg-spotifyGreen border-b border-spotifyBlack flex justify-center min-h-[3rem]'>
+      <div className='w-1/2 min-[700px] m-auto text-spotifyBlack'>
         <ul className='flex flex-row justify-end'>
           <li className='p-3' id='logoutButton'>
-            <a className='bye'>Dashboard</a>
+            <Link to='/dashboard'>Dashboard</Link>
+            {/* <a className='bye'>Dashboard</a> */}
           </li>
           <li className='p-3' id='logoutButton'>
             <a className='bye'>Log In</a>
