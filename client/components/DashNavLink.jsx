@@ -1,6 +1,6 @@
 import React from 'react';
 
-const DashNavLink = (props) => {
+export const DashNavLink = (props) => {
   let currentBG;
   let currentFont;
 
@@ -34,4 +34,17 @@ const DashNavLink = (props) => {
   );
 };
 
-export default DashNavLink;
+export const DashNavNoLink = (props) => {
+  let currentBG;
+  let currentFont;
+
+  const { children, id, currentLink, setCurrentLink } = props;
+
+  return (
+    <li className='bg-spotifyDarkGray px-3'>
+      <div className='text-neutral-300 text-center tracking-widest font-bold text-xs px-2 py-3 whitespace-nowrap'>
+        {children}
+      </div>
+    </li>
+  );
+};

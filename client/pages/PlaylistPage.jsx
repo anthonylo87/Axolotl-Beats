@@ -3,7 +3,7 @@ import Breakpoint from '../components/Breakpoint.jsx';
 import Segment from '../components/Segment.jsx';
 // import DownArrow from '../components/DownArrow.jsx';
 // import BPMPlot from '../components/BPMPlot.jsx';
-import DashNavLink from '../components/DashNavLink.jsx';
+import { DashNavLink, DashNavNoLink } from '../components/DashNavLink.jsx';
 import CustomParamsPlot from '../components/CustomParamsPlot.jsx';
 
 // function that takes breakpoints, segments state objects and packages into a request body that can be processesd by the back-end
@@ -43,6 +43,7 @@ const PlaylistPage = (props) => {
     setbreakpointsArr,
     segmentsArr,
     setSegmentsArr,
+    children,
   } = props;
 
   // State - Dashboard Page
@@ -116,7 +117,7 @@ const PlaylistPage = (props) => {
               >
                 General
               </DashNavLink>
-              <DashNavLink>&#x203A;</DashNavLink>
+              <DashNavNoLink>&#x203A;</DashNavNoLink>
               <DashNavLink
                 id={2}
                 currentLink={currentLink}
@@ -124,7 +125,7 @@ const PlaylistPage = (props) => {
               >
                 Set Parameters
               </DashNavLink>
-              <DashNavLink>&#x203A;</DashNavLink>
+              <DashNavNoLink>&#x203A;</DashNavNoLink>
               <DashNavLink
                 id={3}
                 currentLink={currentLink}
@@ -132,7 +133,7 @@ const PlaylistPage = (props) => {
               >
                 Customize Genres
               </DashNavLink>
-              <DashNavLink>&#x203A;</DashNavLink>
+              <DashNavNoLink>&#x203A;</DashNavNoLink>
               <DashNavLink
                 id={4}
                 currentLink={currentLink}
@@ -142,7 +143,7 @@ const PlaylistPage = (props) => {
               </DashNavLink>
             </ul>
           </div>
-          <div className='h-full w-full bg-spotifyDarkGray p-4'>Test</div>
+          <div className='h-full w-full bg-spotifyDarkGray p-4'>{children}</div>
         </div>
       </section>
 

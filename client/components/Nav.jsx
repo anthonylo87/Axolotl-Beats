@@ -20,7 +20,7 @@ const Nav = (props) => {
   return (
     <nav className='bg-spotifyGreen border-b border-spotifyBlack flex justify-center min-h-[3rem]'>
       <div className='w-1/2 min-[700px] m-auto text-spotifyBlack'>
-        <ul className='flex flex-row justify-end'>
+        <ul className='flex flex-row justify-end text-center tracking-wider font-bold text-sm'>
           <li className='p-3' id='logoutButton'>
             <Link to='/dashboard'>Dashboard</Link>
             {/* <a className='bye'>Dashboard</a> */}
