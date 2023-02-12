@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
 
 import HomePage from './pages/HomePage.jsx';
@@ -16,6 +16,10 @@ function App() {
   const [playlistId, setplaylistId] = useState('Initial value');
   // AMG (wed. 5pm): could also include as state a 'custom_parameter_names' array, e.g. ['danciness', 'speechiness']. then, update the function definition remixBreakpointsAndSegmentDataIntoAnArrForServer to be a little cleaner.
 
+  const [customParams, setCustomParams] = useState([
+    'danciness',
+    'speechiness',
+  ]);
   const [breakpointsArr, setbreakpointsArr] = useState([
     {
       minute: 0, // the starting breakpoint-object will ALWAYS have its minute-value equal to 0, and the user cannot change this
@@ -54,6 +58,21 @@ function App() {
   const [loading, setLoading] = useState(false);
   const auth = useAuth();
 
+  useEffect(() => {
+    const newArr = [];
+    const customParamsObj = {};
+
+    for (const ele of breakpointsArr) {
+      for (const customParam of customParams) {
+        customParamsObj[customParam] = 0;
+      }
+      const newEle = { ...ele, custom_params: customParamsObj };
+      newArr.push(newEle);
+    }
+
+    setbreakpointsArr(newArr);
+  }, []);
+
   return (
     <AuthProvider>
       <Nav />
@@ -66,6 +85,7 @@ function App() {
               setplaylistId={setplaylistId}
               loading={loading}
               setLoading={setLoading}
+              customParams={customParams}
               breakpointsArr={breakpointsArr}
               setbreakpointsArr={setbreakpointsArr}
               segmentsArr={segmentsArr}

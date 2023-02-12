@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Breakpoint from '../components/Breakpoint.jsx';
 import Segment from '../components/Segment.jsx';
-import DownArrow from '../components/DownArrow.jsx';
-import BPMPlot from '../components/BPMPlot.jsx';
+// import DownArrow from '../components/DownArrow.jsx';
+// import BPMPlot from '../components/BPMPlot.jsx';
+import DashNavLink from '../components/DashNavLink.jsx';
 import CustomParamsPlot from '../components/CustomParamsPlot.jsx';
 
 // function that takes breakpoints, segments state objects and packages into a request body that can be processesd by the back-end
@@ -12,7 +13,7 @@ function remixBreakpointsAndSegmentDataIntoAnArrForServer(
 ) {
   const arrForServer = [];
   for (let i = 0; i < segmentsArr.length; i++) {
-    const custom_params = Object.keys(breakpointsArr[i].custom_params); // this implicitly assumes that breakpoint-objects i and i+1 have the same custom_params objects.... so really we should just update this in STATE at some point, and then the present code can be cleaned up slightly.
+    const custom_params = Object.keys(breakpointsArr[i].custom_params);
     const segmentObj = {
       start_time: breakpointsArr[i].minute,
       end_time: breakpointsArr[i + 1].minute,
@@ -37,13 +38,17 @@ const PlaylistPage = (props) => {
   const {
     loading,
     setLoading,
+    customParams,
     breakpointsArr,
     setbreakpointsArr,
     segmentsArr,
     setSegmentsArr,
   } = props;
 
-  const breakpoints = breakpointsArr.map((element, index) => {
+  // State - Dashboard Page
+  const [currentLink, setCurrentLink] = useState(1);
+
+  const breakpoints = customParams.map((element, index) => {
     const timeDisabled = index === 0 ? true : false;
 
     return (
@@ -68,24 +73,28 @@ const PlaylistPage = (props) => {
     );
   });
 
-  const downArrow = <DownArrow />;
+  // const downArrow = <DownArrow />;
 
-  const result = [];
-  breakpoints.forEach((element, index) => {
-    result.push(element);
+  // const result = [];
+  // breakpoints.forEach((element, index) => {
+  //   result.push(element);
 
-    if (index < breakpoints.length - 1) {
-      result.push(downArrow);
-    }
-    if (segments[index]) {
-      result.push(segments[index]);
-    }
-    if (index < breakpoints.length - 1) {
-      result.push(downArrow);
-    }
+  //   if (index < breakpoints.length - 1) {
+  //     result.push(downArrow);
+  //   }
+  //   if (segments[index]) {
+  //     result.push(segments[index]);
+  //   }
+  //   if (index < breakpoints.length - 1) {
+  //     result.push(downArrow);
+  //   }
+  // });
+
+  const bkptComponents = customParams.map((ele, idx) => {
+    return <CustomParamsPlot key={idx} breakpointsArr={breakpointsArr} />;
   });
 
-  const subSection = 'w-full bg-spotifyDarkGray p-3 rounded';
+  const subSection = 'bg-spotifyDarkGray p-3 rounded';
 
   if (loading) {
     return (
@@ -96,11 +105,44 @@ const PlaylistPage = (props) => {
     );
   } else {
     return (
-      <section className='w-full h-[calc(100vh-3rem)] flex flex-row justify-center my-4'>
-        <div className='w-1/2 flex flex-row justify-between gap-4'>
-          <div className={subSection}>A</div>
-          <div className={subSection}>B</div>
-          <div className={subSection}>C</div>
+      <section className='w-full h-[calc(100vh-3rem)] flex flex-row justify-center items-center p-4'>
+        <div className='w-1/2 h-full flex flex-col justify-between'>
+          <div className='w-full bg-spotifyDarkGray mb-2'>
+            <ul className='flex flex-row w-full'>
+              <DashNavLink
+                id={1}
+                currentLink={currentLink}
+                setCurrentLink={setCurrentLink}
+              >
+                General
+              </DashNavLink>
+              <DashNavLink>&#x203A;</DashNavLink>
+              <DashNavLink
+                id={2}
+                currentLink={currentLink}
+                setCurrentLink={setCurrentLink}
+              >
+                Set Parameters
+              </DashNavLink>
+              <DashNavLink>&#x203A;</DashNavLink>
+              <DashNavLink
+                id={3}
+                currentLink={currentLink}
+                setCurrentLink={setCurrentLink}
+              >
+                Customize Genres
+              </DashNavLink>
+              <DashNavLink>&#x203A;</DashNavLink>
+              <DashNavLink
+                id={4}
+                currentLink={currentLink}
+                setCurrentLink={setCurrentLink}
+              >
+                Generate Playlist
+              </DashNavLink>
+            </ul>
+          </div>
+          <div className='h-full w-full bg-spotifyDarkGray p-4'>Test</div>
         </div>
       </section>
 
