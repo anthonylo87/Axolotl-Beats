@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
 
-import HomePage from './pages/HomePage.jsx';
+import Home from './pages/Home.jsx';
 import LoginPage from './components/LoginPage.jsx';
 import PlaylistPage from './pages/PlaylistPage.jsx';
 import EmbeddedPlayer from './components/EmbeddedPlayer.jsx';
@@ -77,7 +77,7 @@ function App() {
     <AuthProvider>
       <Nav />
       <Routes>
-        <Route path='/' element={<HomePage />}></Route>
+        <Route path='/' element={<Home />}></Route>
         <Route
           path='/dashboard'
           element={

@@ -1,6 +1,6 @@
 import React from 'react';
 
-const HomePage = (props) => {
+const Home = (props) => {
   return (
     <section className='w-full h-full flex flex-row justify-center'>
       <div className='w-full h-[calc(100vh-3rem)] bg-spotifyDarkGray main-text fixed top-3rem left-0'></div>
@@ -39,4 +39,4 @@ const HomePage = (props) => {
   );
 };
 
-export default HomePage;
+export default Home;

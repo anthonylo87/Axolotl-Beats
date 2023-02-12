@@ -23,7 +23,6 @@ const Nav = (props) => {
         <ul className='flex flex-row justify-end text-center tracking-wider font-bold text-sm'>
           <li className='p-3' id='logoutButton'>
             <Link to='/dashboard'>Dashboard</Link>
-            {/* <a className='bye'>Dashboard</a> */}
           </li>
           <li className='p-3' id='logoutButton'>
             <a className='bye'>Log In</a>
