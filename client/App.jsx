@@ -3,10 +3,15 @@ import { Route, Routes } from 'react-router-dom';
 
 import Home from './pages/Home.jsx';
 import LoginPage from './components/LoginPage.jsx';
-import PlaylistPage from './pages/PlaylistPage.jsx';
+import DashLayout from './layouts/DashLayout.jsx';
+import General from './pages/General.jsx';
+import Parameters from './pages/Parameters.jsx';
+import Genres from './pages/Genres.jsx';
+import Generate from './pages/Generate.jsx';
 import EmbeddedPlayer from './components/EmbeddedPlayer.jsx';
 import { AuthProvider, useAuth } from './components/AuthContext.jsx';
 import Nav from './components/Nav.jsx';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
 
 import './stylesheets/app.css';
 
@@ -73,27 +78,39 @@ function App() {
     setbreakpointsArr(newArr);
   }, []);
 
+  const theme = createTheme({
+    palette: {
+      text: {
+        primary: '#ffffff',
+        secondary: '#ffffff',
+      },
+      primary: {
+        light: '#62ee82',
+        main: '#1dba53',
+        dark: '#008925',
+        contrastText: '#f7f7f7',
+      },
+      secondary: {
+        light: '#5c5c5c',
+        main: '#333333',
+        dark: '#0c0c0c',
+        contrastText: '#ffffff',
+      },
+    },
+  });
+
   return (
     <AuthProvider>
-      <Nav />
-      <Routes>
-        <Route path='/' element={<Home />}></Route>
-        <Route
-          path='/dashboard'
-          element={
-            <PlaylistPage
-              setplaylistId={setplaylistId}
-              loading={loading}
-              setLoading={setLoading}
-              customParams={customParams}
-              breakpointsArr={breakpointsArr}
-              setbreakpointsArr={setbreakpointsArr}
-              segmentsArr={segmentsArr}
-              setSegmentsArr={setSegmentsArr}
-            />
-          }
-        ></Route>
-      </Routes>
+      <ThemeProvider theme={theme}>
+        <Nav />
+        <Routes>
+          <Route path='/' element={<Home />}></Route>
+          <Route path='/dashboard/general' element={<General />}></Route>
+          <Route path='/dashboard/parameters' element={<Parameters />}></Route>
+          <Route path='/dashboard/genres' element={<Genres />}></Route>
+          <Route path='/dashboard/generate' element={<Generate />}></Route>
+        </Routes>
+      </ThemeProvider>
     </AuthProvider>
   );
 }

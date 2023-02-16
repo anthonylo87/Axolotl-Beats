@@ -4,6 +4,7 @@
 
 html {
   font-size: 16px;
+  font-weight: bold;
   color: theme('colors.spotifyGreen');
 }
 
@@ -21,8 +22,15 @@ p {
 }
 
 .homepage-header {
-  -webkit-text-stroke: 7px theme('colors.spotifyGreen');
+  -webkit-text-stroke: 5px theme('colors.spotifyGreen');
 }
+
+@media screen and (min-width: 1024px) {
+  .homepage-header {
+    -webkit-text-stroke: 7px theme('colors.spotifyGreen');
+  }
+}
+
 
 .main-text {
   -webkit-mask-image: url('../images/mask.png');

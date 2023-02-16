@@ -3,7 +3,7 @@ import Breakpoint from '../components/Breakpoint.jsx';
 import Segment from '../components/Segment.jsx';
 // import DownArrow from '../components/DownArrow.jsx';
 // import BPMPlot from '../components/BPMPlot.jsx';
-import { DashNavLink, DashNavNoLink } from '../components/DashNavLink.jsx';
+import DashNav from '../components/DashNav.jsx';
 import CustomParamsPlot from '../components/CustomParamsPlot.jsx';
 
 // function that takes breakpoints, segments state objects and packages into a request body that can be processesd by the back-end
@@ -45,9 +45,6 @@ const PlaylistPage = (props) => {
     setSegmentsArr,
     children,
   } = props;
-
-  // State - Dashboard Page
-  const [currentLink, setCurrentLink] = useState(1);
 
   const breakpoints = customParams.map((element, index) => {
     const timeDisabled = index === 0 ? true : false;
@@ -109,39 +106,7 @@ const PlaylistPage = (props) => {
       <section className='w-full h-[calc(100vh-3rem)] flex flex-row justify-center items-center p-4'>
         <div className='w-1/2 h-full flex flex-col justify-between'>
           <div className='w-full bg-spotifyDarkGray mb-2'>
-            <ul className='flex flex-row w-full'>
-              <DashNavLink
-                id={1}
-                currentLink={currentLink}
-                setCurrentLink={setCurrentLink}
-              >
-                General
-              </DashNavLink>
-              <DashNavNoLink>&#x203A;</DashNavNoLink>
-              <DashNavLink
-                id={2}
-                currentLink={currentLink}
-                setCurrentLink={setCurrentLink}
-              >
-                Set Parameters
-              </DashNavLink>
-              <DashNavNoLink>&#x203A;</DashNavNoLink>
-              <DashNavLink
-                id={3}
-                currentLink={currentLink}
-                setCurrentLink={setCurrentLink}
-              >
-                Customize Genres
-              </DashNavLink>
-              <DashNavNoLink>&#x203A;</DashNavNoLink>
-              <DashNavLink
-                id={4}
-                currentLink={currentLink}
-                setCurrentLink={setCurrentLink}
-              >
-                Generate Playlist
-              </DashNavLink>
-            </ul>
+            <DashNav />
           </div>
           <div className='h-full w-full bg-spotifyDarkGray p-4'>{children}</div>
         </div>
