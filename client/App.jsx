@@ -78,6 +78,7 @@ function App() {
     setbreakpointsArr(newArr);
   }, []);
 
+  // MUI Theme
   const theme = createTheme({
     palette: {
       text: {

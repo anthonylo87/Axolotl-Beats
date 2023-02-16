@@ -21,6 +21,10 @@ p {
   font-size: 1.25rem;
 }
 
+.css-16bv6s4-MuiInputBase-root-MuiInput-root:before {
+  border-bottom: 1px solid white; 
+}
+
 .homepage-header {
   -webkit-text-stroke: 5px theme('colors.spotifyGreen');
 }
@@ -30,7 +34,6 @@ p {
     -webkit-text-stroke: 7px theme('colors.spotifyGreen');
   }
 }
-
 
 .main-text {
   -webkit-mask-image: url('../images/mask.png');
